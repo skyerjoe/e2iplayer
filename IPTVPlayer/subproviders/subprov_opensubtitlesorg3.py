@@ -58,19 +58,126 @@ class OpenSubtitlesRest(CBaseSubProviderClass):
         CBaseSubProviderClass.__init__(self, params)
 
         self.defaultParams = {'header': self.HTTP_HEADER, 'ignore_http_code_ranges': [], 'use_cookie': False, 'load_cookie': True, 'save_cookie': True, 'cookiefile': self.COOKIE_FILE}
-        self.languages = [{"iso": "af", "id": "afr", "name": "Afrikaans"}, {"iso": "sq", "id": "alb", "name": "Albanian"}, {"iso": "ar", "id": "ara", "name": "Arabic"}, {"iso": "an", "id": "arg", "name": "Aragonese"}, {"iso": "hy", "id": "arm", "name": "Armenian"}, {"iso": "at", "id": "ast", "name": "Asturian"}, {"iso": "az", "id": "aze", "name": "Azerbaijani"}, {"iso": "eu", "id": "baq", "name": "Basque"}, {"iso": "be", "id": "bel", "name": "Belarusian"}, {"iso": "bn", "id": "ben", "name": "Bengali"}, {"iso": "bs", "id": "bos", "name": "Bosnian"}, {"iso": "br", "id": "bre", "name": "Breton"}, {"iso": "bg", "id": "bul", "name": "Bulgarian"}, {"iso": "my", "id": "bur", "name": "Burmese"}, {"iso": "ca", "id": "cat", "name": "Catalan"}, {"iso": "zh", "id": "chi", "name": "Chinese (simplified)"}, {"iso": "zt", "id": "zht", "name": "Chinese (traditional)"}, {"iso": "ze", "id": "zhe", "name": "Chinese bilingual"}, {"iso": "hr", "id": "hrv", "name": "Croatian"}, {"iso": "cs", "id": "cze", "name": "Czech"}, {"iso": "da", "id": "dan", "name": "Danish"}, {"iso": "nl", "id": "dut", "name": "Dutch"}, {"iso": "en", "id": "eng", "name": "English"}, {"iso": "eo", "id": "epo", "name": "Esperanto"}, {"iso": "et", "id": "est", "name": "Estonian"}, {"iso": "ex", "id": "ext", "name": "Extremaduran"}, {"iso": "fi", "id": "fin", "name": "Finnish"}, {"iso": "fr", "id": "fre", "name": "French"}, {"iso": "gl", "id": "glg", "name": "Galician"}, {"iso": "ka", "id": "geo", "name": "Georgian"}, {"iso": "de", "id": "ger", "name": "German"}, {"iso": "el", "id": "ell", "name": "Greek"}, {"iso": "he", "id": "heb", "name": "Hebrew"}, {"iso": "hi", "id": "hin", "name": "Hindi"}, {"iso": "hu", "id": "hun", "name": "Hungarian"}, {"iso": "is", "id": "ice", "name": "Icelandic"}, {"iso": "id", "id": "ind", "name": "Indonesian"}, {"iso": "it", "id": "ita", "name": "Italian"}, {"iso": "ja", "id": "jpn", "name": "Japanese"}, {"iso": "kn", "id": "kan", "name": "Kannada"}, {"iso": "kk", "id": "kaz", "name": "Kazakh"}, {"iso": "km", "id": "khm", "name": "Khmer"}, {"iso": "ko", "id": "kor", "name": "Korean"}, {"iso": "ku", "id": "kur", "name": "Kurdish"}, {"iso": "lv", "id": "lav", "name": "Latvian"}, {"iso": "lt", "id": "lit", "name": "Lithuanian"}, {"iso": "lb", "id": "ltz", "name": "Luxembourgish"}, {"iso": "mk", "id": "mac", "name": "Macedonian"}, {"iso": "ms", "id": "may", "name": "Malay"}, {"iso": "ml", "id": "mal", "name": "Malayalam"}, {"iso": "ma", "id": "mni", "name": "Manipuri"}, {"iso": "mn", "id": "mon", "name": "Mongolian"}, {"iso": "me", "id": "mne", "name": "Montenegrin"}, {"iso": "no", "id": "nor", "name": "Norwegian"}, {"iso": "oc", "id": "oci", "name": "Occitan"}, {"iso": "fa", "id": "per", "name": "Persian"}, {"iso": "pl", "id": "pol", "name": "Polish"}, {"iso": "pt", "id": "por", "name": "Portuguese"}, {"iso": "pb", "id": "pob", "name": "Portuguese (BR)"}, {"iso": "pm", "id": "pom", "name": "Portuguese (MZ)"}, {"iso": "ro", "id": "rum", "name": "Romanian"}, {"iso": "ru", "id": "rus", "name": "Russian"}, {"iso": "sr", "id": "scc", "name": "Serbian"}, {"iso": "si", "id": "sin", "name": "Sinhalese"}, {"iso": "sk", "id": "slo", "name": "Slovak"}, {"iso": "sl", "id": "slv", "name": "Slovenian"}, {"iso": "es", "id": "spa", "name": "Spanish"}, {"iso": "sw", "id": "swa", "name": "Swahili"}, {"iso": "sv", "id": "swe", "name": "Swedish"}, {"iso": "sy", "id": "syr", "name": "Syriac"}, {"iso": "tl", "id": "tgl", "name": "Tagalog"}, {"iso": "ta", "id": "tam", "name": "Tamil"}, {"iso": "te", "id": "tel", "name": "Telugu"}, {"iso": "th", "id": "tha", "name": "Thai"}, {"iso": "tr", "id": "tur", "name": "Turkish"}, {"iso": "uk", "id": "ukr", "name": "Ukrainian"}, {"iso": "ur", "id": "urd", "name": "Urdu"}, {"iso": "vi", "id": "vie", "name": "Vietnamese"}]
+        self.languages = [{"iso": "af", "id": "afr", "name": "Afrikaans"}, {"iso": "sq", "id": "alb", "name": "Albanian"}, {"iso": "ar", "id": "ara", "name": "Arabic"}, {"iso": "an", "id": "arg", "name": "Aragonese"}, {"iso": "hy", "id": "arm", "name": "Armenian"}, {"iso": "as", "id": "asm", "name": "Assamese"}, {"iso": "ast", "id": "ast", "name": "Asturian"}, {"iso": "ay", "id": "aym", "name": "Aymara"}, {"iso": "az", "id": "aze", "name": "Azerbaijani"}, {"iso": "eu", "id": "baq", "name": "Basque"}, {"iso": "be", "id": "bel", "name": "Belarusian"}, {"iso": "bn", "id": "ben", "name": "Bengali"}, {"iso": "bs", "id": "bos", "name": "Bosnian"}, {"iso": "br", "id": "bre", "name": "Breton"}, {"iso": "bg", "id": "bul", "name": "Bulgarian"}, {"iso": "my", "id": "bur", "name": "Burmese"}, {"iso": "ca", "id": "cat", "name": "Catalan"}, {"iso": "ceb", "id": "ceb", "name": "Cebuano"}, {"iso": "ce", "id": "che", "name": "Chechen"}, {"iso": "zh", "id": "chi", "name": "Chinese"}, {"iso": "cv", "id": "chv", "name": "Chuvash"}, {"iso": "co", "id": "cos", "name": "Corsican"}, {"iso": "hr", "id": "cro", "name": "Croatian"}, {"iso": "cs", "id": "cze", "name": "Czech"}, {"iso": "da", "id": "dan", "name": "Danish"}, {"iso": "nl", "id": "dut", "name": "Dutch"}, {"iso": "en", "id": "eng", "name": "English"}, {"iso": "eo", "id": "epo", "name": "Esperanto"}, {"iso": "et", "id": "est", "name": "Estonian"}, {"iso": "fo", "id": "fao", "name": "Faroese"}, {"iso": "fi", "id": "fin", "name": "Finnish"}, {"iso": "fr", "id": "fre", "name": "French"}, {"iso": "fy", "id": "fry", "name": "Frisian"}, {"iso": "gd", "id": "gla", "name": "Gaelic"}, {"iso": "gl", "id": "glg", "name": "Galician"}, {"iso": "ka", "id": "geo", "name": "Georgian"}, {"iso": "de", "id": "ger", "name": "German"}, {"iso": "el", "id": "gre", "name": "Greek"}, {"iso": "kl", "id": "kal", "name": "Greenlandic"}, {"iso": "gn", "id": "grn", "name": "Guarani"}, {"iso": "gu", "id": "guj", "name": "Gujarati"}, {"iso": "ht", "id": "hat", "name": "Haitian"}, {"iso": "ha", "id": "hau", "name": "Hausa"}, {"iso": "haw", "id": "haw", "name": "Hawaiian"}, {"iso": "he", "id": "heb", "name": "Hebrew"}, {"iso": "hi", "id": "hin", "name": "Hindi"}, {"iso": "hu", "id": "hun", "name": "Hungarian"}, {"iso": "is", "id": "ice", "name": "Icelandic"}, {"iso": "ig", "id": "ibo", "name": "Igbo"}, {"iso": "id", "id": "ind", "name": "Indonesian"}, {"iso": "ia", "id": "ina", "name": "Interlingua"}, {"iso": "ie", "id": "ile", "name": "Interlingue"}, {"iso": "iu", "id": "iku", "name": "Inuktitut"}, {"iso": "ik", "id": "ipk", "name": "Inupiak"}, {"iso": "ga", "id": "gle", "name": "Irish"}, {"iso": "it", "id": "ita", "name": "Italian"}, {"iso": "ja", "id": "jpn", "name": "Japanese"}, {"iso": "jv", "id": "jav", "name": "Javanese"}, {"iso": "kn", "id": "kan", "name": "Kannada"}, {"iso": "ks", "id": "kas", "name": "Kashmiri"}, {"iso": "kk", "id": "kaz", "name": "Kazakh"}, {"iso": "km", "id": "khm", "name": "Khmer"}, {"iso": "rw", "id": "kin", "name": "Kinyarwanda"}, {"iso": "ky", "id": "kir", "name": "Kirghiz"}, {"iso": "rn", "id": "run", "name": "Kirundi"}, {"iso": "ko", "id": "kor", "name": "Korean"}, {"iso": "ku", "id": "kur", "name": "Kurdish"}, {"iso": "lo", "id": "lao", "name": "Laothian"}, {"iso": "la", "id": "lat", "name": "Latin"}, {"iso": "lv", "id": "lav", "name": "Latvian"}, {"iso": "li", "id": "lim", "name": "Limburgian"}, {"iso": "ln", "id": "lin", "name": "Lingala"}, {"iso": "lt", "id": "lit", "name": "Lithuanian"}, {"iso": "lb", "id": "ltz", "name": "Luxembourgish"}, {"iso": "mk", "id": "mac", "name": "Macedonian"}, {"iso": "mg", "id": "mal", "name": "Malagasy"}, {"iso": "ms", "id": "may", "name": "Malay"}, {"iso": "ml", "id": "mal", "name": "Malayalam"}, {"iso": "mt", "id": "mlt", "name": "Maltese"}, {"iso": "mni", "id": "mni", "name": "Manipuri"}, {"iso": "mi", "id": "mao", "name": "Maori"}, {"iso": "mr", "id": "mar", "name": "Marathi"}, {"iso": "mo", "id": "mol", "name": "Moldavian"}, {"iso": "mn", "id": "mon", "name": "Mongolian"}, {"iso": "me", "id": "mne", "name": "Montenegrin"}, {"iso": "ne", "id": "nep", "name": "Nepali"}, {"iso": "no", "id": "nor", "name": "Norwegian"}, {"iso": "oc", "id": "oci", "name": "Occitan"}, {"iso": "or", "id": "ory", "name": "Oriya"}, {"iso": "om", "id": "orm", "name": "Oromo"}, {"iso": "pa", "id": "pan", "name": "Panjabi"}, {"iso": "pap", "id": "pap", "name": "Papiamento"}, {"iso": "fa", "id": "per", "name": "Persian"}, {"iso": "pl", "id": "pol", "name": "Polish"}, {"iso": "pt", "id": "por", "name": "Portuguese"}, {"iso": "ps", "id": "pus", "name": "Pushto"}, {"iso": "qu", "id": "que", "name": "Quechua"}, {"iso": "ro", "id": "rum", "name": "Romanian"}, {"iso": "ru", "id": "rus", "name": "Russian"}, {"iso": "se", "id": "sme", "name": "Sami"}, {"iso": "sm", "id": "smo", "name": "Samoan"}, {"iso": "sg", "id": "sag", "name": "Sango"}, {"iso": "sa", "id": "san", "name": "Sanskrit"}, {"iso": "sc", "id": "srd", "name": "Sardinian"}, {"iso": "sr", "id": "scc", "name": "Serbian"}, {"iso": "sh", "id": "shn", "name": "Shan"}, {"iso": "sn", "id": "sna", "name": "Shona"}, {"iso": "sd", "id": "snd", "name": "Sindhi"}, {"iso": "si", "id": "sin", "name": "Singhalese"}, {"iso": "sk", "id": "slo", "name": "Slovak"}, {"iso": "sl", "id": "slv", "name": "Slovenian"}, {"iso": "so", "id": "som", "name": "Somali"}, {"iso": "es", "id": "spa", "name": "Spanish"}, {"iso": "su", "id": "sun", "name": "Sundanese"}, {"iso": "sw", "id": "swa", "name": "Swahili"}, {"iso": "sv", "id": "swe", "name": "Swedish"}, {"iso": "tl", "id": "tgl", "name": "Tagalog"}, {"iso": "tg", "id": "taj", "name": "Tajik"}, {"iso": "ta", "id": "tam", "name": "Tamil"}, {"iso": "tt", "id": "tat", "name": "Tatar"}, {"iso": "te", "id": "tel", "name": "Telugu"}, {"iso": "th", "id": "tha", "name": "Thai"}, {"iso": "bo", "id": "tib", "name": "Tibetan"}, {"iso": "ti", "id": "tir", "name": "Tigrinya"}, {"iso": "to", "id": "ton", "name": "Tonga"}, {"iso": "ts", "id": "tso", "name": "Tsonga"}, {"iso": "tr", "id": "tur", "name": "Turkish"}, {"iso": "tk", "id": "tuk", "name": "Turkmen"}, {"iso": "tw", "id": "twi", "name": "Twi"}, {"iso": "ug", "id": "uig", "name": "Uighur"}, {"iso": "uk", "id": "ukr", "name": "Ukrainian"}, {"iso": "ur", "id": "urd", "name": "Urdu"}, {"iso": "uz", "id": "uzb", "name": "Uzbek"}, {"iso": "vi", "id": "vie", "name": "Vietnamese"}, {"iso": "vo", "id": "vol", "name": "Volapuk"}, {"iso": "cy", "id": "wel", "name": "Welsh"}, {"iso": "xh", "id": "xho", "name": "Xhosa"}, {"iso": "ji", "id": "yid", "name": "Yiddish"}, {"iso": "yo", "id": "yor", "name": "Yoruba"}, {"iso": "za", "id": "zha", "name": "Zhuang"}, {"iso": "zu", "id": "zul", "name": "Zulu"}]
 
         self.dInfo = params['discover_info']
 
+    def _cleanSearchString(self, title):
+        """
+        Clean search string to extract only relevant title parts.
+        Removes season/episode info, descriptions in parentheses, etc.
+        Works for both English and German subtitles.
+        
+        Example: "Chicago P.D. S05E03: Das Versprechen (The Thing About Heroes)" -> "Chicago P.D."
+        """
+        printDBG("OpenSubtitlesRest._cleanSearchString input[%s]" % title)
+        
+        # Remove content in parentheses (descriptions, translations)
+        cleaned = re.sub(r'\s*\([^)]*\)', '', title)
+        
+        # Remove season/episode patterns (S##E##, s##e##, etc.)
+        cleaned = re.sub(r'\s*[Ss]?\d{1,2}[Ee]\d{1,2}.*$', '', cleaned)
+        
+        # Remove colon and everything after it if it contains episode info
+        if ':' in cleaned:
+            parts = cleaned.split(':')
+            cleaned = parts[0]
+        
+        # Clean up extra whitespace
+        cleaned = re.sub(r'\s+', ' ', cleaned).strip()
+        
+        printDBG("OpenSubtitlesRest._cleanSearchString output[%s]" % cleaned)
+        return cleaned
+
+    def _searchTMDB(self, title):
+        """
+        Search TheMovieDB API to bypass IMDB Top 100 ranking limitation.
+        Returns list of results with IMDb IDs.
+        Supports both movies and TV series.
+        """
+        printDBG("OpenSubtitlesRest._searchTMDB title[%s]" % title)
+        results = []
+        
+        try:
+            # TMDB API search endpoint
+            url = "https://api.themoviedb.org/3/search/multi?query=%s&include_adult=false" % urllib_quote(title)
+            
+            sts, data = self.cm.getPage(url)
+            if not sts:
+                printDBG("OpenSubtitlesRest._searchTMDB TMDB API failed")
+                return results
+            
+            data = byteify(json.loads(data))
+            
+            # Extract results
+            if 'results' in data:
+                count = 0
+                for item in data['results']:
+                    if count >= 5:  # Limit to 5 results
+                        break
+                    
+                    media_type = item.get('media_type', 'unknown')
+                    item_title = item.get('title') or item.get('name', '')
+                    year = ''
+                    
+                    if not item_title:
+                        continue
+                    
+                    if media_type == 'movie':
+                        year = item.get('release_date', '')[:4]
+                    elif media_type == 'tv':
+                        year = item.get('first_air_date', '')[:4]
+                    else:
+                        continue
+                    
+                    if year:
+                        result_title = "%s %s" % (item_title, year)
+                        results.append({
+                            'title': result_title,
+                            'base_title': item_title,
+                            'year': year,
+                            'imdbid': ''  # TMDB results need external lookup for IMDB ID
+                        })
+                        count += 1
+        
+        except Exception:
+            printExc()
+        
+        printDBG("OpenSubtitlesRest._searchTMDB found %d results" % len(results))
+        return results
+
     def getMoviesTitles(self, cItem, nextCategory):
         printDBG("OpenSubtitlesRest.getMoviesTitles")
-        sts, tab = self.imdbGetMoviesByTitle(self.params['confirmed_title'])
+        
+        # Clean the search string first
+        cleaned_title = self._cleanSearchString(self.params['confirmed_title'])
+        printDBG("OpenSubtitlesRest.getMoviesTitles cleaned title[%s]" % cleaned_title)
+        
+        # Try IMDB first
+        sts, tab = self.imdbGetMoviesByTitle(cleaned_title)
         if not sts:
-            return
+            tab = []
+        
+        printDBG("OpenSubtitlesRest.getMoviesTitles IMDB results count: %d" % len(tab))
+        
+        # If IMDB returns few results, try TMDB fallback
+        if len(tab) < 3:
+            printDBG("OpenSubtitlesRest.getMoviesTitles - IMDB insufficient results, trying TMDB fallback")
+            tmdb_results = self._searchTMDB(cleaned_title)
+            
+            # Merge results, avoiding duplicates
+            existing_titles = set([item.get('base_title', '').lower() for item in tab])
+            for tmdb_item in tmdb_results:
+                if tmdb_item.get('base_title', '').lower() not in existing_titles:
+                    tab.append(tmdb_item)
+                    existing_titles.add(tmdb_item.get('base_title', '').lower())
+            
+            printDBG("OpenSubtitlesRest.getMoviesTitles merged results count: %d" % len(tab))
+        
         printDBG(tab)
         for item in tab:
             params = dict(cItem)
-            params.update(item)  # item = {'title', 'imdbid'}
+            params.update(item)  # item = {'title', 'imdbid', 'base_title', 'year'}
             params.update({'category': nextCategory})
             self.addDir(params)
 
@@ -112,7 +219,7 @@ class OpenSubtitlesRest(CBaseSubProviderClass):
             self.addDir(params)
 
     def getLanguages(self, cItem, nextCategory):
-        printDBG("OpenSubOrgProvider.getEpisodes")
+        printDBG("OpenSubOrgProvider.getLanguages")
         lang = GetDefaultLang()
         tmpList = []
 
