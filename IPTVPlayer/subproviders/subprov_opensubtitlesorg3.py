@@ -65,23 +65,32 @@ class OpenSubtitlesRest(CBaseSubProviderClass):
     def _cleanSearchString(self, title):
         """
         Clean search string to extract only relevant title parts.
-        Removes season/episode info, descriptions in parentheses, etc.
+        Removes episode descriptions and translations in parentheses.
+        KEEPS season/episode info (S##E##) which is needed for correct results.
         Works for both English and German subtitles.
         
-        Example: "Chicago P.D. S05E03: Das Versprechen (The Thing About Heroes)" -> "Chicago P.D."
+        Example: "Chicago P.D. S05E03: Das Versprechen (The Thing About Heroes)" -> "Chicago P.D. S05E03"
         """
         printDBG("OpenSubtitlesRest._cleanSearchString input[%s]" % title)
         
         # Remove content in parentheses (descriptions, translations)
         cleaned = re.sub(r'\s*\([^)]*\)', '', title)
         
-        # Remove season/episode patterns (S##E##, s##e##, etc.)
-        cleaned = re.sub(r'\s*[Ss]?\d{1,2}[Ee]\d{1,2}.*$', '', cleaned)
-        
-        # Remove colon and everything after it if it contains episode info
+        # Remove everything after colon if it's episode description (but keep S##E## which comes before colon)
+        # Pattern: match S##E## optionally, then remove colon and everything after
         if ':' in cleaned:
-            parts = cleaned.split(':')
-            cleaned = parts[0]
+            # Find if there's a season/episode pattern
+            match = re.search(r'([Ss]\d{1,2}[Ee]\d{1,2})', cleaned)
+            if match:
+                # Keep up to and including the season/episode info
+                se_pos = match.end()
+                # Find the colon after season/episode
+                colon_pos = cleaned.find(':', se_pos)
+                if colon_pos != -1:
+                    cleaned = cleaned[:colon_pos]
+            else:
+                # No season/episode found, just split at colon
+                cleaned = cleaned.split(':')[0]
         
         # Clean up extra whitespace
         cleaned = re.sub(r'\s+', ' ', cleaned).strip()
